@@ -1,15 +1,22 @@
 const http = require('http');
 
-const firstName = 'Thomas';
-const lastName = 'Edison';
 
 let data = JSON.stringify({
-  'firstname': firstName,
-  'lastName': lastName
+  'firstname': 'Thomas',
+  'lastName': 'Edison'
 });
 
+let options = {
+  port: 80,
+  path: 'http://netology.tomilomark.ru/api/v1/hash',
+  method: 'POST',
+  headers: {
+    'firstname': 'Thomas',
+    'Content-Type': 'application/json',
+  }
+};
 
-let request = http.request('http://netology.tomilomark.ru/api/v1/hash');
+let request = http.request(options);
 request.write(data);
 request.on('error', err => console.error(err));
 request.on('response', response => {
